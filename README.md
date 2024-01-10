@@ -22,3 +22,9 @@ https://pdfmaster.app/choose-plan
 
 ## Орієнтовний час виконання
 3-4 години
+
+## Як підняти проєкт локально
+
+1. npm install
+
+2. npm run dev
