@@ -4,14 +4,14 @@ import { API } from "../../../services/api";
 import { ApiFile } from "../../../services/api/types";
 import { generatePDFCover } from "../../../use-cases/generate-pdf-cover";
 import { ParsedUrlQuery } from "querystring";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const useLoadPdfCover = (file: ApiFile, query: ParsedUrlQuery) => {
   const [imagePDF, setImagePDF] = useState<Blob | null>(null);
   const [isImageLoading, setIsImageLoading] = useState(false);
 
   // @NOTE: generating cover for pdf-documents
-  const loadPdfCover = async (): Promise<void> => {
+  const loadPdfCover = useCallback(async (): Promise<void> => {
     if (!file || file.internal_type !== InternalFileType.PDF) {
       return;
     }
@@ -44,11 +44,11 @@ export const useLoadPdfCover = (file: ApiFile, query: ParsedUrlQuery) => {
     } finally {
       setIsImageLoading(false);
     }
-  };
+  }, [file, query]);
 
   useEffect(() => {
     loadPdfCover();
-  }, []);
+  }, [loadPdfCover]);
 
   return {
     isImageLoading,

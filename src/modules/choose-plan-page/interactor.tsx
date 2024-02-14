@@ -27,7 +27,7 @@ import {
   getTrialFormattedPrice,
 } from "./utils/interactorUtils";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 export const usePaymentPageInteractor = (): IPaymentPageInteractor => {
   const router = useRouter();
@@ -70,7 +70,7 @@ export const usePaymentPageInteractor = (): IPaymentPageInteractor => {
     };
   }, []);
 
-  const getPlans = (t: (key: string) => string): Plan[] => {
+  const getPlans = useCallback((t: (key: string) => string): Plan[] => {
     const [monthlyProduct, monthlyFullProduct, annualProduct] = products;
 
     return [
@@ -124,13 +124,12 @@ export const usePaymentPageInteractor = (): IPaymentPageInteractor => {
         text: t(`${annualPlanName}.text`),
       },
     ];
-  };
+  }, []);
 
   return {
     selectedPlan,
     onSelectPlan,
     onContinue,
-
     imagePDF: imagePDF ?? null,
     isImageLoading,
     fileName: file?.filename ?? null,
@@ -142,9 +141,7 @@ export const usePaymentPageInteractor = (): IPaymentPageInteractor => {
       !query?.convertedFrom,
     isSecondEmail: query?.fromEmail === BooleanValue.True,
     isThirdEmail: query?.fromEmail === BooleanValue.True,
-
     isRemoteConfigLoading,
-
     getPlans,
     isPlansLoading: !products.length,
   };

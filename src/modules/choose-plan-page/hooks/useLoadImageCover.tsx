@@ -4,12 +4,12 @@ import InternalFileType from "../../../enums/InternalFileTypeEnum";
 import { API } from "../../../services/api";
 import { ApiFile } from "../../../services/api/types";
 import { ParsedUrlQuery } from "querystring";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const useLoadImageCover = (file: ApiFile, query: ParsedUrlQuery) => {
   const [fileLink, setFileLink] = useState<string | null>(null);
 
-  const loadImageCover = async () => {
+  const loadImageCover = useCallback(async () => {
     if (
       !file ||
       !imagesFormat.includes(file.internal_type) ||
@@ -39,11 +39,11 @@ export const useLoadImageCover = (file: ApiFile, query: ParsedUrlQuery) => {
     })();
 
     setFileLink(fileUrl);
-  };
+  }, [file, query]);
 
   useEffect(() => {
     loadImageCover();
-  }, []);
+  }, [loadImageCover]);
 
   return fileLink;
 };

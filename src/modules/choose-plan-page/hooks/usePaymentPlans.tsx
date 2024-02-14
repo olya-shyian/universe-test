@@ -23,17 +23,15 @@ export const usePaymentPlans = (router: NextRouter, abTests: {}) => {
   const onSelectPlan = (plan: PaymentPlanId) => {
     if (selectedPlan === plan) {
       setSelectedPlan(plan);
-      onContinue("planTab");
+      onContinue();
 
       return;
     }
 
     setSelectedPlan(plan);
-
-    const product = products?.find((item) => item.name === plan);
   };
 
-  const onContinue = (place?: string) => {
+  const onContinue = () => {
     localStorage.setItem("selectedPlan", selectedPlan);
 
     router.push({ pathname: `${PageLinks.Payment}`, query: router.query });
