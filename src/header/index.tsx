@@ -1,5 +1,5 @@
+import PageLinks from "../enums/PageLinks";
 import check from "../header/assets/check.svg";
-import { PAGE_LINKS } from "../modules/choose-plan-page/interactor";
 import logo_new from "./assets/logo.svg";
 import classNames from "classnames";
 import { useTranslation } from "next-i18next";
@@ -35,7 +35,7 @@ export const Header: React.FC<IProps> = ({ backgroundColor = "#F8F8F8" }) => {
         <div className="flex mobile:items-center items-start">
           <Link
             className="h-6 tablet:h-full tablet:mb-0 mb-5"
-            href={PAGE_LINKS.MAIN}
+            href={PageLinks.Main}
           >
             <Image
               src={logo_new}

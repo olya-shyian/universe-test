@@ -1,4 +1,4 @@
-import { InternalFileType } from "../../modules/choose-plan-page/interactor";
+import InternalFileType from "../../enums/InternalFileTypeEnum";
 
 export interface ApiFile {
   id: string;

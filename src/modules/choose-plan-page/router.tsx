@@ -1,5 +1,7 @@
 import { LoadingAnimation } from "../../components/loading-animation";
 import { PrimaryButton } from "../../components/primary-button";
+import InternalFileType from "../../enums/InternalFileTypeEnum";
+import IPaymentPageInteractor from "../../interfaces/IPaymentPageInteractor";
 import { PaymentPlanId } from "../../use-cases/get-subscription-products";
 import black_star from "./assets/black-star.svg";
 import fake_file from "./assets/fake-file.svg";
@@ -7,7 +9,6 @@ import green_check_b from "./assets/green-check-b.svg";
 import radio_off from "./assets/radio-off.svg";
 import radio_on from "./assets/radio-on.svg";
 import stars_doc_b from "./assets/stars_document-b.svg";
-import { IPaymentPageInteractor, InternalFileType } from "./interactor";
 import classNames from "classnames";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
@@ -43,7 +44,6 @@ export const PaymentPageRouter: React.FC<IProps> = ({ interactor, header }) => {
     onContinue,
     selectedPlan,
     onSelectPlan,
-    onCommentsFlip,
     imagePDF,
     isImageLoading,
     fileLink,
