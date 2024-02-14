@@ -1,4 +1,3 @@
-import CurrencyEnum from "../../../enums/CurrencyEnum";
 import PageLinks from "../../../enums/PageLinks";
 import {
   PaymentPlanId,
